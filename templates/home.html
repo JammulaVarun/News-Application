@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} News Application {% endblock %}
+
+{% block content %}
+
+<header class="text-center bg-dark py-2">
+    <h1 class="display-4 text-light">News Application <i class="fa-regular fa-newspaper"></i></h1>
+</header>
+
+<section class="container">
+    <div class="row">
+        {% for art in article %}
+        <div class="col-md-3 p-3">
+            <div class="card h-100 w-100 img-thumbnail shadow shadow-md">
+
+                <img src="{{art.urlToImage}}" class="card-img-top p-2" alt="Image not found">
+                <div class="card-body ">
+                    <h5 class="card-title pb-3">{{art.title}}</h5>
+                    <p class="card-text justify-content-evenly"><small><em>{{art.description}}</em></small></p>
+                    <div class="text-end">
+                        <a href="{{art.url}}" class="btn btn-outline-primary px-5 py-1" data-bs-toggle="tooltip"
+                            data-bs-title="Link to full News" data-bs-placement="right">Click</a>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <small>
+                        -- {{art.author}}
+                        <br>
+                        Published at : {{art.publishedAt}}
+                    </small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
